@@ -5,9 +5,9 @@
 
     {{ form_start(form) }}
     {{form_row(form.username, {'label' : 'Nom d\'utilisateur', 'attr' : {'placeholder' : 'Nom du utilisateur'}})}}
-    {{form_row(form.email, {'attr' : {'placeholder' : 'Adresse mail'}})}}
-    {{form_row(form.password, {'attr' : {'placeholder' : 'Mot de Passe'}})}}
-    {{form_row(form.confirm_password, {'attr' : {'placeholder' : 'Veillez confirmer votre mot de passe'}})}}
+    {{form_row(form.email, {'label' : 'Adresse mail', 'attr' : {'placeholder' : 'Adresse mail'}})}}
+    {{form_row(form.password, {'label' : 'Mot de passe', 'attr' : {'placeholder' : 'Mot de Passe'}})}}
+    {{form_row(form.confirm_password, {'label' : ' Confirmation de mot de passe' ,'attr' : {'placeholder' : 'Veillez confirmer votre mot de passe'}})}}
         
         {# ->add('email')
         ->add('username')
