@@ -4,13 +4,16 @@
     <h1> Inscription sur méméServices ! </h1>
 
     {{ form_start(form) }}
-    {{form_widget(form)}}
+    {{form_row(form.username, {'label' : 'Nom d\'utilisateur', 'attr' : {'placeholder' : 'Nom du utilisateur'}})}}
+    {{form_row(form.email, {'attr' : {'placeholder' : 'Adresse mail'}})}}
+    {{form_row(form.password, {'attr' : {'placeholder' : 'Mot de Passe'}})}}
+    {{form_row(form.confirm_password, {'attr' : {'placeholder' : 'Veillez confirmer votre mot de passe'}})}}
         
         {# ->add('email')
         ->add('username')
         ->add('password')
         ->add('confirm_password') #}
 
-        <button type="submit" class="btn btn-primary btn-lg">S'inscrire</button>
+        <button type="submit" class="btn btn-primary btn-lg">S'inscrire !</button>
     {{ form_end(form) }}
 {% endblock %}
