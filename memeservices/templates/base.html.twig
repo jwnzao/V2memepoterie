@@ -22,9 +22,16 @@
         {% endblock %}
     </head>
     <body>
-
+        {% include 'header/index.html.twig' %}
         <div class="container margin-top=5">
             {% block body %}{% endblock %}
         </div>
+
+        
     </body>
+    {% block footer %}
+            {% include 'footer/index.html.twig' %}
+            &copy; Copyright 2021 by <a href="http://domain.invalid/">Jeff</a>.
+    {% endblock %}
+    
 </html>

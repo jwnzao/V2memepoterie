@@ -3,6 +3,13 @@
 {% block title %}Categorie index{% endblock %}
 
 {% block body %}
+
+    {# read and display just one flash message type #}
+    {% for message in app.flashes('notification') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     <h1>Categorie index</h1>
 
     <table class="table">
@@ -31,5 +38,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('categorie_new') }}">Create new</a>
+    <a href="{{ path('categorie_new') }}">Ajouter une nouvelle catégorie</a>
 {% endblock %}

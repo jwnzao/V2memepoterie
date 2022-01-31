@@ -6,6 +6,9 @@ use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\BrowserKit\Response;
+//Use de contraintes du nombre de caractères
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CategorieRepository::class)
@@ -19,8 +22,11 @@ class Categorie
      */
     private $id;
 
+
+    //Au niveau du nom, nous avons une contrainte du nombre de caractères
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\Length(min=3, minMessage="mini 3 caractères")
      */
     private $nom;
 
@@ -77,4 +83,12 @@ class Categorie
 
         return $this;
     }
+
+    //S'il faut convertir exemple: name qui est un object en string
+
+    
+    public function __toString()
+    {
+        return $this->nom;
+    } 
 }

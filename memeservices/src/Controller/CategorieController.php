@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategorieController extends AbstractController
 {
     /**
-     * @Route("/", name="categorie_index", methods={"GET"})
+     * @Route("/", name="categorie_index", methods={"GET", "POST"})
      */
     public function index(CategorieRepository $categorieRepository): Response
     {
@@ -38,6 +38,11 @@ class CategorieController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($categorie);
             $entityManager->flush();
+
+            $this->addFlash(
+                'notification',
+                'Vos modifications ont été enregistrées!'
+            );
 
             return $this->redirectToRoute('categorie_index', [], Response::HTTP_SEE_OTHER);
         }

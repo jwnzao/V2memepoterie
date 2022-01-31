@@ -39,6 +39,11 @@ class Article
      */
     private $category;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
+     */
+    private $owner;
+
     public function __construct()
     {
         $this->category = new ArrayCollection();
@@ -73,17 +78,16 @@ class Article
         return $this;
     }
 
-    public function getCreateArt(): ?string
+    public function getCreateArt(): ?\DateTimeImmutable
     {
         return $this->createArt;
     }
 
-    public function setCreateArt(string $createArt): self
-    {
-        $this->createArt = $createArt;
-
-        return $this;
-    }
+    public function setCreateArt(?\DateTimeImmutable $createArt): self
+   {
+       $this->createArt = $createArt;
+       return $this;
+   }
 
     /**
      * @return Collection|Categorie[]
@@ -108,4 +112,26 @@ class Article
 
         return $this;
     }
+
+   public function getOwner(): ?User
+   {
+       return $this->owner;
+   }
+
+   public function setOwner(?User $owner): self
+   {
+       $this->owner = $owner;
+
+       return $this;
+   }  
+
+  /*  public function getCreateAt(): ?\DateTimeImmutable
+   {
+       return $this->createAt;
+   }
+   public function setCreateAt(?\DateTimeImmutable $createdAt): self
+   {
+       $this->createdAt = $createdAt;
+       return $this;
+   } */
 }
