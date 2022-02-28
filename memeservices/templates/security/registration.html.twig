@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1> Hello ! </h1>
+    {{ form_start(form.name, {'attr': {'placeholder': 'Votre nom'}}) }}
+    {{ form_start(form.prenom, {'attr': {'placeholder': 'Votre prénom'}}) }}
+    {{ form_start(form.email, {'attr': {'placeholder': 'Votre adresse email'}}) }}
+    {{ form_start(form.password, {'attr': {'placeholder': 'Votre mot de passe'}}) }}
+    {{ form_start(form.confirm_password, {'attr': {'placeholder': 'Confirmez votre mot de passe'}}) }}
+  
+
+    <button type="submit" class="btn btn-success ">Inscription</button>
+    {{ form_end(form)}}
+{% endblock %}
+
+{# btn-primary btn-lg  value="{{ 'registration.submit'|trans }}#}
+

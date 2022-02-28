@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-
+use Symfony\Component\DomCrawler\Image;
 
 class UserController extends AbstractController
 {
@@ -30,39 +30,12 @@ class UserController extends AbstractController
     /**
      * @Route("/user/annonces/ajout", name="user_annonces_ajout")
      */
-    public function ajoutAnnonce(Request $request, ManagePicturesService $picturesService)
-    {
-        $annonce = new Annonces;
-
-        $form = $this->createForm(AnnoncesType::class, $annonce);
-
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()){
-            $annonce->setUser($this->getUser());
-            $annonce->setActive(false);
-            // On récupère les images transmises
-            $images = $form->get('images')->getData();
-                
-            // On ajoute les images
-            $picturesService->add($images, $annonce);
-            
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($annonce);
-            $em->flush();
-
-            return $this->redirectToRoute('user');
-        }
-
-        return $this->render('user/annonces/ajout.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
+    /*   */
 
     /**
      * @Route("/user/annonces/edit/{id}", name="user_annonces_edit")
      */
-    public function editAnnonce(Annonces $annonce, Request $request, ManagePicturesService $picturesService)
+    /* public function editAnnonce(Annonces $annonce, Request $request, ManagePicturesService $picturesService)
     {
         $this->denyAccessUnlessGranted('annonce_edit', $annonce);
         $form = $this->createForm(AnnoncesType::class, $annonce);
@@ -88,7 +61,7 @@ class UserController extends AbstractController
             'form' => $form->createView(),
             'annonce' => $annonce
         ]);
-    }
+    } */
 
     /**
      * @Route("/user/profil/modifier", name="user_profil_modifier")
@@ -117,7 +90,7 @@ class UserController extends AbstractController
     /**
      * @Route("/user/pass/modifier", name="user_pass_modifier")
      */
-    public function editPass(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+  /*   public function editPass(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         if($request->isMethod('POST')){
             $em = $this->getDoctrine()->getManager();
@@ -137,7 +110,7 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/editpass.html.twig');
-    }
+    } */
 
     /**
      * @Route("/user/data", name="user_data")
@@ -150,7 +123,7 @@ class UserController extends AbstractController
     /**
      * @Route("/user/data/download", name="user_data_download")
      */
-    public function userDataDownload()
+    /* public function userDataDownload()
     {
         // On définit les options du PDF
         $pdfOptions = new Options();
@@ -185,12 +158,12 @@ class UserController extends AbstractController
         ]);
 
         return new Response();
-    }
+    } */
 
     /**
      * @Route("/supprime/image/{id}", name="annonces_delete_image", methods={"DELETE"})
      */
-    public function deleteImage(Images $image, Request $request){
+    /* public function deleteImage(Image $image, Request $request){
         $data = json_decode($request->getContent(), true);
 
         // On vérifie si le token est valide
@@ -210,6 +183,6 @@ class UserController extends AbstractController
         }else{
             return new JsonResponse(['error' => 'Token Invalide'], 400);
         }
-    }
+    } */
 
 }
